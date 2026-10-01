@@ -2,11 +2,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
+import Todo from "./models/Todo.js";
+import todoRouter from './routes/todoRoutes.js';
 
 dotenv.config();
 const app = express();
 app.use(express.json());  // important middleware
 
+
+app.use('/api/todos', todoRouter);
 
 // HEALTH CHECK END POINT
 app.get("/api/health-check", (req, res)=>{
